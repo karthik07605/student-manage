@@ -144,6 +144,7 @@ def password_reset_request(request):
             return redirect('studentlogin')
         else:
             messages.error(request, "No account found with this email.")
+            return redirect('reset_password')
     
     return render(request, 'password_reset.html')
 
