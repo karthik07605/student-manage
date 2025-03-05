@@ -119,7 +119,7 @@ def password_reset_request(request):
             uid = urlsafe_base64_encode(force_bytes(user.pk))
             
             # FIX: Ensure SITE_URL is defined
-            site_url = getattr(settings, "SITE_URL", "http://127.0.0.1:8000")
+            site_url = settings.SITE_URL
             reset_url = f"{site_url}/reset_password_confirm/{uid}/{token}/"
 
             # FIX: Ensure the template exists
