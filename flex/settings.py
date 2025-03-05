@@ -143,8 +143,4 @@ EMAIL_HOST_USER = 'karthik07605kk@gmail.com'  # Your Outlook email
 EMAIL_HOST_PASSWORD = 'zdef rdte nmss lhcb'  # Use App Password if 2FA is enabled
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-SITE_URL = "http://127.0.0.1:8000"
-
-
-
-
+SITE_URL = 'https://student-manage-portal.onrender.com'
