@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management Portal</title>
+
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 🌆 Background Image */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://png.pngtree.com/background/20210714/original/pngtree-original-design-business-office-management-system-background-banner-picture-image_1191085.jpg') 
+                        no-repeat center center/cover;
+            text-align: center;
+            color: white;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 15px;
+            background: rgba(247, 246, 246, 0.15);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            
+            padding: 10px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(6px);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .login-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .half {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 220px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .half:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-10px);
+        }
+
+        .btn {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 15px 40px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            border: none;
+            box-shadow: 0 4px 10px rgba(181, 119, 130, 0.5);
+            transition: 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            box-shadow: 0 6px 15px rgba(183, 104, 117, 0.8);
+        }
+
+        /* 📱 Responsive Design */
+        @media (max-width: 600px) {
+            .login-section {
+                flex-direction: column;
+            }
+
+            .half {
+                width: 100%;
+                height: 180px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Student Management Website</h1>
+        <div class="login-section">
+            <div class="half">
+                <a href="{% url 'studentlogin' %}" class="btn">Student Login</a>
+            </div>
+            <div class="half">
+                <a href="{% url 'facultylogin' %}" class="btn">Faculty Login</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

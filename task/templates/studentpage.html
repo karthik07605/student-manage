@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 🌟 Soft Blue Theme */
+        body {
+            background: linear-gradient(135deg, #dce8ff, #f4f7ff);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* 🔝 Navbar */
+        .navbar {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #444;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+            color: #007bff;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #e60000;
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* 📤 Upload Box with Glassmorphism */
+        .upload-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            animation: slideDown 1s ease-in-out;
+            text-align: center;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 2px solid #ddd;
+            background: white;
+            color: #333;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+        }
+
+        /* 📤 Upload Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        /* 📂 Uploaded Files Section */
+        .files-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 550px;
+            margin: 30px auto;
+            animation: slideUp 1s ease-in-out;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #f9f9f9;
+            padding: 12px;
+            margin: 6px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        ul li:hover {
+            background: #eaeaea;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .delete-btn {
+            background: red;
+            border: border;
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-left: 50px;
+        }
+        
+        .delete-btn:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        
+
+        /* 📱 Responsive Design */
+        @media (max-width: 600px) {
+            .upload-container,
+            .files-container,
+            .navbar {
+                width: 100%;
+            }
+        }
+
+        /* ✨ Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🔝 Navbar -->
+    <div class="navbar">
+        <a href="{% url 'home' %}">🏠 Home</a>
+        <div>
+            <span class="username">Welcome, {{ request.user.username }}</span>
+            <form method="POST" action="{% url 'logoutpage' %}" style="display:inline;">
+                {% csrf_token %}
+                <button class="logout-btn" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 🔥 Welcome Heading -->
+    <h1>Student Dashboard</h1>
+
+    <!-- 📤 Upload Form -->
+    <div class="upload-container">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="companyname" placeholder="Enter Certificate Name" required>
+            <input type="file" name="files" accept=".pdf,.doc,.docx" required>
+            <button type="submit">Upload</button>
+        </form>
+        
+    </div>
+
+    <!-- 📂 Uploaded Files Section -->
+    {% if tasks %}
+        <div class="files-container">
+            <h2>Uploaded Files:</h2>
+            <ul>
+                {% for file in tasks %}
+                    <li>
+                        <a href="{{ file.files.url }}" target="_blank">{{ file.companyname }}</a>
+                        <form method="POST" action="{% url 'deletefile' file.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn">DELETE</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <div class="files-container">
+            <p>No files uploaded yet.</p>
+        </div>
+    {% endif %}
+
+</body>
+</html>

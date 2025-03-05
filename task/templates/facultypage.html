@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Page</title>
+
+    <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* 🌆 Background Image */
+        body {
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                        url('https://media.istockphoto.com/id/1490392845/video/document-management-system.jpg?s=640x640&k=20&c=O2N_cLUGmvUWsbxtUFQXXVvpRRD6JFAMTRcwxfFN_Ig=')
+                        no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            color: #f1f1f1;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* 🔵 Header */
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            position: absolute;
+            top: 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .faculty-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* 🚀 Button Container for Logout & Add Student */
+        .button-container {
+            display: flex;
+            gap: 10px; /* Spacing between buttons */
+        }
+
+        .logout-btn{
+            background: #ff5a5a;
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .add-student-btn{
+            background:rgb(25, 234, 53);
+            color: white;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+
+        }
+
+        .logout-btn:hover  {
+            background: #e60000;
+            transform: scale(1.05);
+        }
+        .add-student-btn:hover{
+            background:rgb(20, 210, 248);
+            transform: scale(1.05);
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            margin-top: 50px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+        }
+
+        /* 🟦 Form Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 450px;
+            animation: slideUp 1s ease-in-out;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+        }
+
+        select:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        /* 🔵 Submit Button */
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            background: linear-gradient(135deg, #4a90e2, #76b5ff);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #76b5ff, #4a90e2);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 📁 Uploaded Files Section */
+        .files-container {
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideUp 1s ease-in-out;
+        }
+
+        ul li {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+        }
+
+        ul li:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* 📱 Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px; /* Add space between elements */
+            }
+
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically */
+                width: 100%;
+                text-align: center;
+            }
+
+            .logout-btn, .add-student-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* ✨ Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🔵 Header with Faculty Name, Logout & Add Student -->
+    <div class="header">
+        <div class="faculty-name">Faculty: {{ request.user.username }}</div>
+
+        <!-- 🚀 Button Container (For Desktop & Mobile) -->
+        <div class="button-container">
+            <a href="{% url 'logoutpage' %}" class="logout-btn">Logout</a>
+            <form method="POST" action="{% url 'addstudent' %}">
+                {% csrf_token %}
+                <button type="submit" class="add-student-btn">Add Student</button>
+            </form>
+        </div>
+    </div>
+
+    <h1>Welcome to Student File Management</h1>
+
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="student_id">Select Student:</label>
+            <select name='student_id' id="student_id">
+                <option value="">Choose a student</option>
+                {% for student in tasks %}
+                    <option value="{{ student.user.id }}">{{ student.user.username }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    {% if selected_student %}
+        <div class="files-container">
+            <h2>Files Uploaded by {{ selected_student.username }}</h2>
+            {% if uploaded_files %}
+                <ul>
+                    {% for file in uploaded_files %}
+                        <li>
+                            <a href="{{ file.files.url }}" target="_blank">{{ file.companyname }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No files uploaded by this student.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+
+</body>
+</html>

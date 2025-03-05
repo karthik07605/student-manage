@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+
+    <!-- Bootstrap & Icons -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Background Image */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                        url('https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1600&q=80')
+                        no-repeat center center/cover;
+            padding: 20px;
+        }
+
+        /* Glassmorphism Effect */
+        .form-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            width: 450px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h3 {
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Input Fields */
+        .input-group {
+            margin-bottom: 15px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Input Field Design */
+        .input-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(34, 238, 15, 0.7);
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: none;
+            padding: 12px 15px 12px 45px; /* Left padding for icon */
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom:15px;
+            transition: 0.3s ease-in-out;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        input:focus {
+            border-bottom: 2px solid #17a2b8;
+            box-shadow: 0 0 8px rgba(23, 162, 184, 0.6);
+        }
+
+        /* Password Eye Icon Inside Input */
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+            transition: 0.3s;
+        }
+
+        .password-toggle:hover {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        /* Button Styling */
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background: #17a2b8;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .register-btn:hover {
+            background: #138496;
+        }
+
+        /* Error Message Styling */
+        .error-message {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff4d4d;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        /* Home Link */
+        .home-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .home-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 480px) {
+            .form-box {
+                width: 100%;
+                padding: 20px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            input,
+            .register-btn {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="form-box">
+        <h3>Student Registration</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-container">
+                <i class="fas fa-user input-icon"></i>
+                {{ form.username }}
+            </div>
+            <div class="input-container">
+                <i class="fas fa-user input-icon"></i>
+                {{ form.email }}
+            </div>
+            <div class="input-container">
+                <i class="fas fa-lock input-icon"></i>
+                {{ form.password1 }}
+                <i class="fas fa-eye password-toggle" onclick="togglePassword('id_password1')"></i>
+            </div>
+            <div class="input-container">
+                <i class="fas fa-lock input-icon"></i>
+                {{ form.password2 }}
+                <i class="fas fa-eye password-toggle" onclick="togglePassword('id_password2')"></i>
+            </div>
+            <button class="btn register-btn" type="submit">Register</button>
+        </form>
+
+        {% if form.errors %}
+        <div class="error-message">
+            <strong>Oops! Something went wrong:</strong>
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <a href="{% url 'facultypage' %}" class="home-link"><i class="fa fa-home"></i> Home</a>
+    </div>
+
+    <script>
+        // Add placeholders dynamically
+        var form_fields = document.getElementsByTagName('input');
+        form_fields[1].placeholder = 'Enter username...';
+        form_fields[2].placeholder='Enter Email Address...'
+        form_fields[3].placeholder = 'Enter password...';
+        form_fields[4].placeholder = 'Confirm password...';
+
+        // Password Toggle Function
+        function togglePassword(fieldId) {
+            var field = document.getElementById(fieldId);
+            if (field.type === "password") {
+                field.type = "text";
+            } else {
+                field.type = "password";
+            }
+        }
+    </script>
+
+</body>
+</html>
